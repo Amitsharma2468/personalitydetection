@@ -1,70 +1,44 @@
-# Personality Detection ML Backend
-
-This project is a backend service for a personality detection machine learning application. It utilizes a trained model to predict personality traits based on input data.
-
-## Project Structure
-
-```
-personality-ml-backend
-├── src
-│   ├── app.py                # Entry point of the application
-│   ├── model
-│   │   └── predictor.py      # Model loading and prediction logic
-│   ├── api
-│   │   └── routes.py         # API route definitions
-│   └── utils
-│       └── helpers.py        # Utility functions for data processing
-├── requirements.txt          # Project dependencies
-├── README.md                 # Project documentation
-└── .gitignore                # Files to ignore in version control
-```
+# Personality Prediction Backend
 
 ## Setup Instructions
 
-1. **Clone the repository:**
-   ```
-   git clone <repository-url>
-   cd personality-ml-backend
-   ```
-
-2. **Create a virtual environment:**
-   ```
+1. **Create a virtual environment:**
+   ```bash
+   cd backend
    python -m venv venv
    ```
 
-3. **Activate the virtual environment:**
-   - On Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - On macOS/Linux:
-     ```
-     source venv/bin/activate
-     ```
+2. **Activate the virtual environment:**
+   - Windows: `venv\Scripts\activate`
+   - macOS/Linux: `source venv/bin/activate`
 
-4. **Install the required dependencies:**
-   ```
+3. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
+4. **Place your model artifacts:**
+   - Create a `model_artifacts` folder in the backend directory
+   - Copy your trained model files:
+     - `personality_model.joblib`
+     - `label_encoder.joblib`
+     - `imputer_numerical.joblib`
+     - `imputer_categorical.joblib`
+     - `trained_columns.joblib`
+     - `model_accuracy.joblib`
 
-1. **Run the application:**
+5. **Run the server:**
+   ```bash
+   python app.py
    ```
-   python src/app.py
-   ```
 
-2. **Access the API:**
-   The API will be available at `http://localhost:5000`. You can use tools like Postman or curl to interact with the endpoints.
+The API will be available at `http://localhost:5000`
 
-## Example
+## API Endpoints
 
-To make a prediction, send a POST request to the `/predict` endpoint with the necessary input data in JSON format.
+- `GET /api/health` - Health check
+- `POST /api/predict` - Personality prediction
 
-## Contributing
+## Model Integration
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+The backend automatically loads your trained scikit-learn model from the `model_artifacts` directory. If the model files are not found, it falls back to a rule-based prediction system.
