@@ -287,6 +287,6 @@ def predict_personality():
 
 if __name__ == '__main__':
     print("🚀 Starting Personality Prediction API...")
-    print("📊 Health check: http://0.0.0.0:7860/api/health")
-    print("🧠 Prediction endpoint: http://0.0.0.0:7860/api/predict")
-    app.run(debug=False, host='0.0.0.0', port=7860)
+    print("📊 Health check: http://0.0.0.0:5000/api/health")
+    print("🧠 Prediction endpoint: http://0.0.0.0:5000/api/predict")
+    app.run(debug=False, host='0.0.0.0', port=5000)
