@@ -1,6 +1,6 @@
 import { PersonalityFormData, ApiResponse, ApiError } from '../types/personality';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 export class PersonalityAPI {
   static async checkHealth(): Promise<boolean> {
