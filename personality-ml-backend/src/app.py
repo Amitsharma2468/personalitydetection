@@ -23,16 +23,19 @@ class PersonalityPredictor:
     
     def load_model(self):
         """Load the trained model and preprocessing artifacts"""
-        model_artifacts = 'model_artifacts'
-        
+        base_dir = os.path.dirname(__file__)
+        model_artifacts = os.path.join(base_dir, 'model_artifacts')
+
+        print("📂 Looking for model artifacts in:", model_artifacts)
+
         try:
             if os.path.exists(model_artifacts):
-                self.model = joblib.load(f'{model_artifacts}/personality_model.joblib')
-                self.label_encoder = joblib.load(f'{model_artifacts}/label_encoder.joblib')
-                self.imputer_numerical = joblib.load(f'{model_artifacts}/imputer_numerical.joblib')
-                self.imputer_categorical = joblib.load(f'{model_artifacts}/imputer_categorical.joblib')
-                self.trained_columns = joblib.load(f'{model_artifacts}/trained_columns.joblib')
-                self.model_accuracy = joblib.load(f'{model_artifacts}/model_accuracy.joblib')
+                self.model = joblib.load(os.path.join(model_artifacts, 'personality_model.joblib'))
+                self.label_encoder = joblib.load(os.path.join(model_artifacts, 'label_encoder.joblib'))
+                self.imputer_numerical = joblib.load(os.path.join(model_artifacts, 'imputer_numerical.joblib'))
+                self.imputer_categorical = joblib.load(os.path.join(model_artifacts, 'imputer_categorical.joblib'))
+                self.trained_columns = joblib.load(os.path.join(model_artifacts, 'trained_columns.joblib'))
+                self.model_accuracy = joblib.load(os.path.join(model_artifacts, 'model_accuracy.joblib'))
                 print("✅ Model loaded successfully")
             else:
                 print("⚠️ Model artifacts not found. Using fallback prediction logic.")
